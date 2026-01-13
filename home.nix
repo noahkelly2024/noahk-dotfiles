@@ -36,6 +36,14 @@
 
   programs.rofi.enable = true;
 
+  home.pointerCursor = {
+    name = "DMZ-White";
+    size = 24;
+    package = pkgs.vanilla-dmz;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
 

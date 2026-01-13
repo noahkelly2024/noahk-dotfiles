@@ -56,6 +56,7 @@
     grim
     slurp
     wl-clipboard
+    vanilla-dmz
     fd
     bat
     file

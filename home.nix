@@ -9,6 +9,7 @@
   programs.bash.shellAliases = {
     btw = "echo i use hyprland btw";
     fr  = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#hyprland-btw";
+    backup = "sudo chmod +X /home/noahk/nixos-dotfiles/backup.sh && /home/noahk/nixos-dotfiles/backup.sh";
   };
 
   programs.neovim = {

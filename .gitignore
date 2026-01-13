@@ -1,0 +1,15 @@
+cat > .gitignore <<'EOF'
+# Nix build outputs
+result
+result-*
+
+# Editor junk
+*~
+*.swp
+.DS_Store
+
+# Caches
+.cache
+.local
+EOF
+

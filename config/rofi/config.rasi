@@ -1,0 +1,106 @@
+configuration {
+    modes: "drun";
+    combi-modes: "drun";
+    sorting-method: "normal";
+    show-icons:false;
+    matching: "regex";
+    drun-match-fields: "name";
+    display-run: "Menu:";
+}
+
+@theme "tokyo"
+
+* {
+    font: "JetBrainsMono Nerd Font 12";
+    background-color: rgba(10,15,20, 85%);
+    text-color: rgb(159, 179, 173);
+
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
+}
+
+window {
+    location:       center;
+    width:          800;
+    y-offset:       -20;
+    border-radius:  24px;
+
+    border: 2px;
+    border-color: rgba(0, 243, 227, 100%);
+    background-color:   transparent;
+}
+
+mainbox {
+    padding:    12px;
+}
+
+inputbar {
+    background-color:   rgba(10,15,20, 85%);
+    border-color:       rgba(0, 243, 227, 100%);
+    border-radius:  16px;
+    border:         2px;
+
+    padding:    8px 16px;
+    spacing:    8px;
+    children:   [ prompt, entry ];
+}
+
+prompt {
+    text-color: rgb(0, 243, 227);
+}
+
+entry {
+    placeholder:        "Search";
+    placeholder-color: rgb(159, 179, 173);
+}
+
+message {
+    text-color: #ffffff;
+    margin:             12px 0 0;
+    border-radius:      16px;
+    border-color:       rgb(111, 177, 200);
+    background-color:   rgb(111, 177, 200);
+}
+
+textbox {
+    padding:    8px 24px;
+    background-color: rgb(111, 177, 200);
+}
+
+listview {
+    background-color:   transparent;
+    margin:     12px 0 0;
+    columns:    1;
+    lines:      8;
+
+    fixed-height: false;
+}
+
+element {
+    padding:        8px 16px;
+    spacing:        8px;
+    border-radius:  16px;
+}
+
+element normal urgent {
+  text-color: rgb(111, 177, 200);
+}
+
+element normal active {
+    text-color: rgb(111, 177, 200);
+}
+
+element selected normal, element selected active {
+    background-color: rgb(111, 177, 200);
+}
+
+element-icon {
+    size:           1em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: #ffffff;
+    background-color: transparent;
+}

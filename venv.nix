@@ -116,11 +116,11 @@ USAGE
 
     # Inject the Nix runtime libs into this venv (only once)
     if ! grep -q "NIX_PYTHON_LD_LIBRARY_PATH" "$ACTIVATE"; then
-      cat >> "$ACTIVATE" <<EOF
+      cat >> "$ACTIVATE" <<'EOF'
 
 # --- NixOS Python wheel fix (numpy/pandas/etc.) ---
 export NIX_PYTHON_LD_LIBRARY_PATH="${nixPythonLibs}"
-export LD_LIBRARY_PATH="\$NIX_PYTHON_LD_LIBRARY_PATH:\${LD_LIBRARY_PATH:-}"
+export LD_LIBRARY_PATH="$NIX_PYTHON_LD_LIBRARY_PATH:$${LD_LIBRARY_PATH:-}"
 # -----------------------------------------------
 EOF
     fi

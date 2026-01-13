@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./venv.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -39,7 +40,30 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
+  programs.nix-ld = {
+    enable = true;
+    #Include libstdc++ in the nix-ld profile
+    libraries = [
+      pkgs.stdenv.cc.cc
+      pkgs.zlib
+      pkgs.fuse3
+      pkgs.icu
+      pkgs.nss
+      pkgs.openssl
+      pkgs.curl
+      pkgs.expat
+      pkgs.xorg.libX11
+      pkgs.vulkan-headers
+      pkgs.vulkan-loader
+      pkgs.vulkan-tools
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
+    (writeShellScriptBin "python" ''
+      export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+      exec ${pkgs.python3}/bin/python "$@"
+    '')
     wget
     kitty
     waybar
@@ -76,7 +100,10 @@
     opencode
   ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
+    NIXOS_OZONE_WL = "1";
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

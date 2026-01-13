@@ -44,7 +44,8 @@
     kitty
     waybar
     git
-    htop
+    gh
+    btop
     hyprpaper
     hyprcursor
     google-chrome

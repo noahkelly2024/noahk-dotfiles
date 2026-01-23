@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-cd ~/nixos-dotfiles
+cd ~/noahk-dotfiles
 
 echo "Checking status..."
 git status --short

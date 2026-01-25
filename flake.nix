@@ -1,44 +1,50 @@
 {
-  description = "Hyprland on Nixos";
+  description = "noahk Home Manager flake for CachyOS (Hyprland + dotfiles)";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # Nixpkgs (pick a branch; unstable is common for Hyprland/Wayland tooling)
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    hyprland_plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Hyprland plugins (for hyprscrolling in your home.nix)
+    hyprland_plugins.url = "github:hyprwm/hyprland-plugins";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, hyprland, ... }:
-  {
-    nixosConfigurations.hyprland-btw = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, hyprland_plugins, ... }@inputs:
+    let
+      # Change this if you’re on ARM: "aarch64-linux"
       system = "x86_64-linux";
 
-      specialArgs = { inherit inputs; };
+      pkgs = import nixpkgs {
+        inherit system;
 
-      modules = [
-        hyprland.nixosModules.default
-        ./configuration.nix
+        # Needed for google-chrome, discord, etc.
+        config.allowUnfree = true;
+      };
+    in
+    {
+      # This is the config you'll apply with:
+      # nix run home-manager/master -- switch --flake .#noahk
+      homeConfigurations.noahk = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.noahk = import ./home.nix;
-            backupFileExtension = "backup";
-            extraSpecialArgs = { inherit inputs; };
-          };
-        }
-      ];
+        # Pass flake inputs into your home.nix (so `inputs.self` works)
+        extraSpecialArgs = { inherit inputs; };
+
+        # Your Home Manager module
+        modules = [
+          ./home.nix
+
+          # A couple of sane defaults that avoid common first-run footguns
+          ({ config, ... }: {
+            home.stateVersion = "25.05";
+          })
+        ];
+      };
     };
-  };
 }

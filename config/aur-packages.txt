@@ -1,0 +1,9 @@
+# browsers / chat
+google-chrome
+discord
+
+# vscode variants (pick ONE)
+code # (if you use "code", remove visual-studio-code-bin)
+
+opencode
+tree

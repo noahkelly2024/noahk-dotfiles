@@ -3,6 +3,8 @@ set -e
 
 cd ~/noahk-dotfiles
 
+git add .
+
 echo "Checking status..."
 git status --short
 

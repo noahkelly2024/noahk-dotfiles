@@ -1,0 +1,30 @@
+# basics
+wget
+git
+github-cli
+neovim
+ripgrep
+fd
+bat
+file
+unzip
+lsof
+coreutils
+btop
+tree-sitter
+
+# wayland / hyprland tools
+waybar
+hyprpaper
+hyprcursor
+rofi
+grim
+slurp
+wl-clipboard
+
+# audio / media
+pavucontrol
+playerctl
+
+# cursor theme (DMZ-White / Vanilla-DMZ)
+xcursor-vanilla-dmz

@@ -7,3 +7,6 @@ code # (if you use "code", remove visual-studio-code-bin)
 
 opencode
 tree
+virt-manager
+libvirt
+qemu-base

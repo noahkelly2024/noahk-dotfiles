@@ -2,6 +2,7 @@
 wget
 git
 github-cli
+rsync
 neovim
 ripgrep
 fd
